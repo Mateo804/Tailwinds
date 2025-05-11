@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listado de Proyectos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Listado de proyectos</h1>
+  </header>
+  <div class="container">
+    <main>
+      <div class="breadcrumb">Inicio > Listado de Proyectos</div>
+
+      <div class="main-title">Listado de Proyectos</div>
+
+      <table id="tablaProyectos" class="table">
+        <thead>
+          <tr>
+            <th>ID Proyecto</th>
+            <th>Nombre Proyecto</th>
+            <th>Descripción</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Final</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+      <div class="main-title" style="margin-top: 2rem;">Asignaciones de Proyectos</div>
+
+      <table id="tablaAsignaciones" class="table">
+        <thead>
+          <tr>
+            <th>ID Participante</th>
+            <th>Nombre Participante</th>
+            <th>ID Proyecto</th>
+            <th>Nombre Proyecto</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </main>
+
+    <aside>
+      <nav>
+        <a href="Main.html">Crear proyecto</a>
+        <a href="Listado_proyectos.html">Listado de proyectos</a>
+        <a href="Buscar_proyecto.html">Buscar proyecto</a>
+        <a href="Participantes.html">Participantes</a>
+        <a href="Asignacion.html">Asignación de proyectos</a>
+      </nav>
+    </aside>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Mateo Martinez</p>
+    <p> Taller Tailwinds</p>
+  </footer>
+
+  <script>
+    window.onload = function() {
+      cargarProyectos();
+      cargarAsignaciones();
+    };
+
+    function cargarProyectos() {
+      let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
+      const tablaProyectos = document.getElementById("tablaProyectos").querySelector("tbody");
+
+      proyectos.forEach(proyecto => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td>${proyecto.id}</td>
+          <td>${proyecto.nombre}</td>
+          <td>${proyecto.descripcion}</td>
+          <td>${proyecto.inicio}</td>
+          <td>${proyecto.final}</td>
+          <td>${proyecto.valor}</td>
+        `;
+        tablaProyectos.appendChild(fila);
+      });
+    }
+
+    function cargarAsignaciones() {
+      let asignaciones = JSON.parse(localStorage.getItem("asignaciones")) || [];
+      const tablaAsignaciones = document.getElementById("tablaAsignaciones").querySelector("tbody");
+
+      asignaciones.forEach(asignacion => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td>${asignacion.idParticipante}</td>
+          <td>${asignacion.nombreParticipante}</td>
+          <td>${asignacion.idProyecto}</td>
+          <td>${asignacion.nombreProyecto}</td>
+        `;
+        tablaAsignaciones.appendChild(fila);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,58 +1,117 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel de Administración</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Crear Proyecto</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <h1>Panel de Administración</h1>
   </header>
-
   <div class="container">
     <main>
       <div class="breadcrumb">Inicio > Crear Proyecto</div>
-      <div class="main-title">Crear Proyecto</div>
-      <form>
+      <div class="main-title">Formulario de Creación de Proyecto</div>
+      <form id="formProyecto">
         <label for="idProyecto">ID Proyecto</label>
-        <input type="text" id="idProyecto" name="idProyecto">
+        <input type="text" id="idProyecto" name="idProyecto" required>
 
         <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre">
+        <input type="text" id="nombre" name="nombre" required>
 
         <label for="descripcion">Descripción</label>
-        <textarea id="descripcion" name="descripcion"></textarea>
+        <textarea id="descripcion" name="descripcion" required></textarea>
 
         <label for="fechaInicio">Fecha Inicio</label>
-        <input type="date" id="fechaInicio" name="fechaInicio">
+        <input type="date" id="fechaInicio" name="fechaInicio" required>
 
         <label for="fechaFinal">Fecha Final</label>
-        <input type="date" id="fechaFinal" name="fechaFinal">
+        <input type="date" id="fechaFinal" name="fechaFinal" required>
 
         <label for="valor">Valor</label>
-        <input type="number" id="valor" name="valor">
+        <input type="number" id="valor" name="valor" required>
 
         <button type="submit">Crear Proyecto</button>
       </form>
-    </main>
 
+      <div class="main-title" style="margin-top: 2rem;">Listado de Proyectos</div>
+      <table id="tablaProyectos" style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+        <thead>
+          <tr style="background: #2c3e50; color: white;">
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Final</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </main>
     <aside>
       <nav>
-        <a href="index.html">Crear proyecto</a>
-        <a href="Participantes.html">Crear participante</a>
-        <a href="#">Listado de proyectos</a>
-        <a href="#">Buscar proyecto</a>
-        <a href="#">Participantes</a>
-        <a href="#">Asignación de proyectos</a>
+        <a href="Main.html">Crear proyecto</a>
+        <a href="Listado_Proyectos.html">Listado de proyectos</a>
+        <a href="Buscar_Proyecto.html">Buscar proyecto</a>
+        <a href="Participantes.html">Participantes</a>
+        <a href="Asignacion.htmls">Asignación de proyectos</a>
       </nav>
     </aside>
   </div>
 
   <footer>
-    <p>&copy; 2025 Panel de Administración</p>
+    <p>&copy; 2025 Mateo Martinez</p>
+    <p> Taller Tailwinds</p>
   </footer>
+
+  <script>
+    document.getElementById("formProyecto").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const idProyecto = document.getElementById("idProyecto").value;
+      const nombre = document.getElementById("nombre").value;
+      const descripcion = document.getElementById("descripcion").value;
+      const inicio = document.getElementById("fechaInicio").value;
+      const final = document.getElementById("fechaFinal").value;
+      const valor = document.getElementById("valor").value;
+
+      const proyecto = { id: idProyecto, nombre, descripcion, fechaInicio, fechaFinal, valor };
+      let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
+      proyectos.push(proyecto);
+      localStorage.setItem("proyectos", JSON.stringify(proyectos));
+
+      const existe = proyectos.some(p => p.id === idProyecto);
+      if (existe) {
+        alert("Ya existe un proyecto con ese ID. Por favor usa uno diferente.");
+        return;
+      }
+
+      agregarFilaProyecto(proyecto);
+      this.reset();
+    });
+
+    function agregarFilaProyecto(proyecto) {
+      const tabla = document.getElementById("tablaProyectos").querySelector("tbody");
+      const fila = document.createElement("tr");
+      fila.innerHTML = `
+        <td>${proyecto.id}</td>
+        <td>${proyecto.nombre}</td>
+        <td>${proyecto.descripcion}</td>
+        <td>${proyecto.inicio}</td>
+        <td>${proyecto.final}</td>
+        <td>${proyecto.valor}</td>
+      `;
+      tabla.appendChild(fila);
+    }
+
+    window.onload = function() {
+      let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
+      proyectos.forEach(agregarFilaProyecto);
+    };
+  </script>
 </body>
 </html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asignación de Proyecto</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Asignación de Proyectos</h1>
+  </header>
+  <div class="container">
+    <main>
+      <div class="breadcrumb">Inicio > Asignación de Proyecto</div>
+
+      <div class="main-title">Asignar Proyecto a Participante</div>
+
+      <form id="formAsignacion">
+        <label for="idProyecto">Seleccionar Proyecto</label>
+        <select id="idProyecto" name="idProyecto" required>
+        </select>
+
+        <label for="idParticipante">Seleccionar Participante</label>
+        <select id="idParticipante" name="idParticipante" required>
+        </select>
+
+        <button type="submit">Asignar Proyecto</button>
+      </form>
+
+      <div class="main-title" style="margin-top: 2rem;">Listado de Asignaciones</div>
+      <table id="tablaAsignaciones" class="table">
+        <thead>
+          <tr>
+            <th>ID Participante</th>
+            <th>Nombre Participante</th>
+            <th>ID Proyecto</th>
+            <th>Nombre Proyecto</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </main>
+
+    <aside>
+      <nav>
+        <a href="Main.html">Crear proyecto</a>
+        <a href="Listado_proyectos.html">Listado de proyectos</a>
+        <a href="Buscar_proyecto.html">Buscar proyecto</a>
+        <a href="Participantes.html">Participantes</a>
+        <a href="Asignacion.html">Asignación de proyectos</a>
+      </nav>
+    </aside>
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 Mateo Martinez</p>
+    <p> Taller Tailwinds</p>
+  </footer>
+
+  <script>
+    document.getElementById("formAsignacion").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const idProyecto = document.getElementById("idProyecto").value;
+      const idParticipante = document.getElementById("idParticipante").value;
+
+      let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
+      let participantes = JSON.parse(localStorage.getItem("participantes")) || [];
+
+      const proyectoSeleccionado = proyectos.find(p => p.id === idProyecto);
+      const participanteSeleccionado = participantes.find(p => p.identificacion === idParticipante);
+
+      if (!proyectoSeleccionado) {
+        alert("Proyecto no encontrado.");
+        return;
+      }
+
+      if (!participanteSeleccionado) {
+        alert("Participante no encontrado.");
+        return;
+      }
+
+      const asignacion = {
+        idProyecto: proyectoSeleccionado.id,
+        nombreProyecto: proyectoSeleccionado.nombre,
+        idParticipante: participanteSeleccionado.identificacion,
+        nombreParticipante: participanteSeleccionado.nombres + " " + participanteSeleccionado.apellidos
+      };
+
+      let asignaciones = JSON.parse(localStorage.getItem("asignaciones")) || [];
+      asignaciones.push(asignacion);
+      localStorage.setItem("asignaciones", JSON.stringify(asignaciones));
+
+      agregarFilaAsignacion(asignacion);
+
+      this.reset();
+    });
+
+    window.onload = function() {
+      cargarProyectos();
+      cargarParticipantes();
+
+      let asignaciones = JSON.parse(localStorage.getItem("asignaciones")) || [];
+      asignaciones.forEach(agregarFilaAsignacion);
+    };
+
+    function agregarFilaAsignacion(asignacion) {
+      const tabla = document.getElementById("tablaAsignaciones").querySelector("tbody");
+      const fila = document.createElement("tr");
+      fila.innerHTML = `
+        <td>${asignacion.idParticipante}</td>
+        <td>${asignacion.nombreParticipante}</td>
+        <td>${asignacion.idProyecto}</td>
+        <td>${asignacion.nombreProyecto}</td>
+      `;
+      tabla.appendChild(fila);
+    }
+
+    function cargarProyectos() {
+      let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
+      const selectProyecto = document.getElementById("idProyecto");
+
+      proyectos.forEach(proyecto => {
+        const option = document.createElement("option");
+        option.value = proyecto.id;
+        option.textContent = proyecto.nombre;
+        selectProyecto.appendChild(option);
+      });
+    }
+
+    function cargarParticipantes() {
+      let participantes = JSON.parse(localStorage.getItem("participantes")) || [];
+      const selectParticipante = document.getElementById("idParticipante");
+
+      participantes.forEach(participante => {
+        const option = document.createElement("option");
+        option.value = participante.identificacion;
+        option.textContent = participante.nombres + " " + participante.apellidos;
+        selectParticipante.appendChild(option);
+      });
+    }
+  </script>
+</body>
+</html>
