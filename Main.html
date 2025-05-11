@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - Crear Proyecto</title>
+  <title>Proyectos</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>Panel de Administración</h1>
+    <h1>Crear Proyecto</h1>
   </header>
   <div class="container">
     <main>
@@ -58,60 +58,62 @@
         <a href="Listado_Proyectos.html">Listado de proyectos</a>
         <a href="Buscar_Proyecto.html">Buscar proyecto</a>
         <a href="Participantes.html">Participantes</a>
-        <a href="Asignacion.htmls">Asignación de proyectos</a>
+        <a href="Asignacion.html">Asignación de proyectos</a>
       </nav>
     </aside>
   </div>
 
   <footer>
-    <p>&copy; 2025 Mateo Martinez</p>
+    <p>&copy; 2025 Mateo Martinez</p> <br>
     <p> Taller Tailwinds</p>
   </footer>
 
-  <script>
-    document.getElementById("formProyecto").addEventListener("submit", function(event) {
-      event.preventDefault();
+ <script>
+  document.getElementById("formProyecto").addEventListener("submit", function(event) {
+    event.preventDefault();
 
-      const idProyecto = document.getElementById("idProyecto").value;
-      const nombre = document.getElementById("nombre").value;
-      const descripcion = document.getElementById("descripcion").value;
-      const inicio = document.getElementById("fechaInicio").value;
-      const final = document.getElementById("fechaFinal").value;
-      const valor = document.getElementById("valor").value;
+    const idProyecto = document.getElementById("idProyecto").value;
+    const nombre = document.getElementById("nombre").value;
+    const descripcion = document.getElementById("descripcion").value;
+    const inicio = document.getElementById("fechaInicio").value;
+    const final = document.getElementById("fechaFinal").value;
+    const valor = document.getElementById("valor").value;
 
-      const proyecto = { id: idProyecto, nombre, descripcion, fechaInicio, fechaFinal, valor };
-      let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
-      proyectos.push(proyecto);
-      localStorage.setItem("proyectos", JSON.stringify(proyectos));
+    let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
+    const existe = proyectos.some(p => p.id === idProyecto);
 
-      const existe = proyectos.some(p => p.id === idProyecto);
-      if (existe) {
-        alert("Ya existe un proyecto con ese ID. Por favor usa uno diferente.");
-        return;
-      }
-
-      agregarFilaProyecto(proyecto);
-      this.reset();
-    });
-
-    function agregarFilaProyecto(proyecto) {
-      const tabla = document.getElementById("tablaProyectos").querySelector("tbody");
-      const fila = document.createElement("tr");
-      fila.innerHTML = `
-        <td>${proyecto.id}</td>
-        <td>${proyecto.nombre}</td>
-        <td>${proyecto.descripcion}</td>
-        <td>${proyecto.inicio}</td>
-        <td>${proyecto.final}</td>
-        <td>${proyecto.valor}</td>
-      `;
-      tabla.appendChild(fila);
+    if (existe) {
+      alert("Ya existe un proyecto con ese ID. Por favor usa uno diferente.");
+      return;
     }
 
-    window.onload = function() {
-      let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
-      proyectos.forEach(agregarFilaProyecto);
-    };
-  </script>
+    const proyecto = { id: idProyecto, nombre, descripcion, inicio, final, valor };
+    proyectos.push(proyecto);
+    localStorage.setItem("proyectos", JSON.stringify(proyectos));
+
+    agregarFilaProyecto(proyecto);
+    this.reset();
+  });
+
+  function agregarFilaProyecto(proyecto) {
+    const tabla = document.getElementById("tablaProyectos").querySelector("tbody");
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+      <td>${proyecto.id}</td>
+      <td>${proyecto.nombre}</td>
+      <td>${proyecto.descripcion}</td>
+      <td>${proyecto.inicio}</td>
+      <td>${proyecto.final}</td>
+      <td>${proyecto.valor}</td>
+    `;
+    tabla.appendChild(fila);
+  }
+
+  window.onload = function() {
+    const proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
+    proyectos.forEach(agregarFilaProyecto);
+  };
+</script>
+
 </body>
 </html>

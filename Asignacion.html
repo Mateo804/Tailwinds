@@ -55,7 +55,7 @@
   </div>
   
   <footer>
-    <p>&copy; 2025 Mateo Martinez</p>
+    <p>&copy; 2025 Mateo Martinez</p> <br>
     <p> Taller Tailwinds</p>
   </footer>
 
@@ -119,16 +119,16 @@
     }
 
     function cargarProyectos() {
-      let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
-      const selectProyecto = document.getElementById("idProyecto");
+  let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
+  const selectProyecto = document.getElementById("idProyecto");
 
-      proyectos.forEach(proyecto => {
-        const option = document.createElement("option");
-        option.value = proyecto.id;
-        option.textContent = proyecto.nombre;
-        selectProyecto.appendChild(option);
-      });
-    }
+  proyectos.forEach(proyecto => {
+    const option = document.createElement("option");
+    option.value = proyecto.id;
+    option.textContent = `${proyecto.id} - ${proyecto.nombre}`;
+    selectProyecto.appendChild(option);
+  });
+}
 
     function cargarParticipantes() {
       let participantes = JSON.parse(localStorage.getItem("participantes")) || [];
@@ -137,7 +137,7 @@
       participantes.forEach(participante => {
         const option = document.createElement("option");
         option.value = participante.identificacion;
-        option.textContent = participante.nombres + " " + participante.apellidos;
+        option.textContent = participante.identificacion + " - " + participante.nombres + " " + participante.apellidos;
         selectParticipante.appendChild(option);
       });
     }
