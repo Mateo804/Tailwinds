@@ -1,146 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Asignación de Proyecto</title>
-  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <h1>Asignación de Proyectos</h1>
+<body class="flex flex-col min-h-screen font-sans">
+
+  <header class="bg-[#2c3e50] text-white p-4 text-center font-bold text-xl">
+    Asignación de Proyectos
   </header>
-  <div class="container">
-    <main>
-      <div class="breadcrumb">Inicio > Asignación de Proyecto</div>
 
-      <div class="main-title">Asignar Proyecto a Participante</div>
+  <div class="flex flex-1">
+    <main class="flex-1 p-8 bg-[#f4f4f4] overflow-auto">
+      <div class="text-sm text-[#7f8c8d] mb-4">Inicio &gt; Asignación de Proyecto</div>
 
-      <form id="formAsignacion">
-        <label for="idProyecto">Seleccionar Proyecto</label>
-        <select id="idProyecto" name="idProyecto" required>
+      <h2 class="text-2xl mb-6 text-[#34495e] font-semibold">Asignar Proyecto a Participante</h2>
+
+      <form id="formAsignacion" class="bg-white p-6 rounded-lg shadow-md max-w-xl"
+            onsubmit="event.preventDefault(); /* No hace nada */">
+        <label for="idProyecto" class="block mb-1 text-[#2c3e50] font-medium">Seleccionar Proyecto</label>
+        <select id="idProyecto" name="idProyecto" required
+                class="w-full p-2 border border-gray-300 rounded mb-4">
+          <option value="">-- Seleccione un proyecto --</option>
+          <option value="P001">P001 - Sistema de Gestión</option>
+          <option value="P002">P002 - App Móvil</option>
+          <option value="P003">P003 - Plataforma Web</option>
+          <option value="P004">P004 - Red Social</option>
         </select>
 
-        <label for="idParticipante">Seleccionar Participante</label>
-        <select id="idParticipante" name="idParticipante" required>
+        <label for="idParticipante" class="block mb-1 text-[#2c3e50] font-medium">Seleccionar Participante</label>
+        <select id="idParticipante" name="idParticipante" required
+                class="w-full p-2 border border-gray-300 rounded mb-6">
+          <option value="">-- Seleccione un participante --</option>
+          <option value="12345678">12345678 - Camila López</option>
+          <option value="87654321">87654321 - Juan Pérez</option>
+          <option value="11223344">11223344 - Laura Martínez</option>
+          <option value="44332211">44332211 - Andrés Gómez</option>
         </select>
 
-        <button type="submit">Asignar Proyecto</button>
+        <button type="submit"
+                class="w-full bg-[#2c3e50] hover:bg-[#34495e] text-white py-3 rounded font-semibold transition-colors">
+          Asignar Proyecto
+        </button>
       </form>
 
-      <div class="main-title" style="margin-top: 2rem;">Listado de Asignaciones</div>
-      <table id="tablaAsignaciones" class="table">
-        <thead>
+      <h2 class="text-2xl mt-12 mb-4 text-[#34495e] font-semibold">Listado de Asignaciones</h2>
+      <table class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+        <thead class="bg-[#bdc3c7] text-[#2c3e50]">
           <tr>
-            <th>ID Participante</th>
-            <th>Nombre Participante</th>
-            <th>ID Proyecto</th>
-            <th>Nombre Proyecto</th>
+            <th class="text-left p-3 border border-gray-300">ID Participante</th>
+            <th class="text-left p-3 border border-gray-300">Nombre Participante</th>
+            <th class="text-left p-3 border border-gray-300">ID Proyecto</th>
+            <th class="text-left p-3 border border-gray-300">Nombre Proyecto</th>
           </tr>
         </thead>
         <tbody>
+          <tr class="even:bg-[#ecf0f1]">
+            <td class="p-3 border border-gray-300">12345678</td>
+            <td class="p-3 border border-gray-300">Camila López</td>
+            <td class="p-3 border border-gray-300">P001</td>
+            <td class="p-3 border border-gray-300">Sistema de Gestión</td>
+          </tr>
+          <tr class="even:bg-[#ecf0f1]">
+            <td class="p-3 border border-gray-300">87654321</td>
+            <td class="p-3 border border-gray-300">Juan Pérez</td>
+            <td class="p-3 border border-gray-300">P002</td>
+            <td class="p-3 border border-gray-300">App Móvil</td>
+          </tr>
+          <tr class="even:bg-[#ecf0f1]">
+            <td class="p-3 border border-gray-300">11223344</td>
+            <td class="p-3 border border-gray-300">Laura Martínez</td>
+            <td class="p-3 border border-gray-300">P004</td>
+            <td class="p-3 border border-gray-300">Red Social</td>
+          </tr>
+          <tr class="even:bg-[#ecf0f1]">
+            <td class="p-3 border border-gray-300">44332211</td>
+            <td class="p-3 border border-gray-300">Andrés Gómez</td>
+            <td class="p-3 border border-gray-300">P003</td>
+            <td class="p-3 border border-gray-300">Plataforma Web</td>
+          </tr>
         </tbody>
       </table>
     </main>
 
-    <aside>
-      <nav>
-        <a href="Main.html">Crear proyecto</a>
-        <a href="Listado_proyectos.html">Listado de proyectos</a>
-        <a href="Buscar_proyecto.html">Buscar proyecto</a>
-        <a href="Participantes.html">Participantes</a>
-        <a href="Asignacion.html">Asignación de proyectos</a>
+    <aside class="w-[250px] bg-[#ecf0f1] p-4 border-l border-gray-300">
+      <nav class="flex flex-col">
+        <a href="Main.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Crear proyecto</a>
+        <a href="Listado_proyectos.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Listado de proyectos</a>
+        <a href="Buscar_proyecto.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Buscar proyecto</a>
+        <a href="Participantes.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Participantes</a>
+        <a href="Asignacion.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Asignación de proyectos</a>
       </nav>
     </aside>
   </div>
-  
-  <footer>
-    <p>&copy; 2025 Mateo Martinez</p> <br>
-    <p> Taller Tailwinds</p>
+
+  <footer class="bg-[#2c3e50] text-white p-4 text-center text-sm">
+    <p>&copy; 2025 Mateo Martinez</p>
+    <p>Taller Tailwinds</p>
   </footer>
 
-  <script>
-    document.getElementById("formAsignacion").addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      const idProyecto = document.getElementById("idProyecto").value;
-      const idParticipante = document.getElementById("idParticipante").value;
-
-      let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
-      let participantes = JSON.parse(localStorage.getItem("participantes")) || [];
-
-      const proyectoSeleccionado = proyectos.find(p => p.id === idProyecto);
-      const participanteSeleccionado = participantes.find(p => p.identificacion === idParticipante);
-
-      if (!proyectoSeleccionado) {
-        alert("Proyecto no encontrado.");
-        return;
-      }
-
-      if (!participanteSeleccionado) {
-        alert("Participante no encontrado.");
-        return;
-      }
-
-      const asignacion = {
-        idProyecto: proyectoSeleccionado.id,
-        nombreProyecto: proyectoSeleccionado.nombre,
-        idParticipante: participanteSeleccionado.identificacion,
-        nombreParticipante: participanteSeleccionado.nombres + " " + participanteSeleccionado.apellidos
-      };
-
-      let asignaciones = JSON.parse(localStorage.getItem("asignaciones")) || [];
-      asignaciones.push(asignacion);
-      localStorage.setItem("asignaciones", JSON.stringify(asignaciones));
-
-      agregarFilaAsignacion(asignacion);
-
-      this.reset();
-    });
-
-    window.onload = function() {
-      cargarProyectos();
-      cargarParticipantes();
-
-      let asignaciones = JSON.parse(localStorage.getItem("asignaciones")) || [];
-      asignaciones.forEach(agregarFilaAsignacion);
-    };
-
-    function agregarFilaAsignacion(asignacion) {
-      const tabla = document.getElementById("tablaAsignaciones").querySelector("tbody");
-      const fila = document.createElement("tr");
-      fila.innerHTML = `
-        <td>${asignacion.idParticipante}</td>
-        <td>${asignacion.nombreParticipante}</td>
-        <td>${asignacion.idProyecto}</td>
-        <td>${asignacion.nombreProyecto}</td>
-      `;
-      tabla.appendChild(fila);
-    }
-
-    function cargarProyectos() {
-  let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
-  const selectProyecto = document.getElementById("idProyecto");
-
-  proyectos.forEach(proyecto => {
-    const option = document.createElement("option");
-    option.value = proyecto.id;
-    option.textContent = `${proyecto.id} - ${proyecto.nombre}`;
-    selectProyecto.appendChild(option);
-  });
-}
-
-    function cargarParticipantes() {
-      let participantes = JSON.parse(localStorage.getItem("participantes")) || [];
-      const selectParticipante = document.getElementById("idParticipante");
-
-      participantes.forEach(participante => {
-        const option = document.createElement("option");
-        option.value = participante.identificacion;
-        option.textContent = participante.identificacion + " - " + participante.nombres + " " + participante.apellidos;
-        selectParticipante.appendChild(option);
-      });
-    }
-  </script>
 </body>
 </html>

@@ -1,112 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Participantes</title>
-  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <h1>Panel de Administración</h1>
+<body class="flex flex-col h-screen font-sans">
+
+  <header class="bg-[#2c3e50] text-white p-4 text-center">
+    <h1 class="text-xl font-bold">Panel de Administración</h1>
   </header>
-  <div class="container">
-    <main>
-      <div class="breadcrumb">Inicio > Participantes</div>
-      <div class="main-title">Formulario de Creación de Participante</div>
-      <form id="formParticipante">
-        <label for="identificacion">Identificación</label>
-        <input type="text" id="identificacion" name="identificacion" required>
 
-        <label for="nombres">Nombres</label>
-        <input type="text" id="nombres" name="nombres" required>
+  <div class="flex flex-1">
+    <main class="flex-1 p-8 bg-[#f4f4f4] overflow-y-auto">
+      <div class="text-sm text-[#7f8c8d] mb-4">Inicio &gt; Participantes</div>
+      <h2 class="text-2xl mb-4 text-[#34495e]">Formulario de Creación de Participante</h2>
 
-        <label for="apellidos">Apellidos</label>
-        <input type="text" id="apellidos" name="apellidos" required>
+      <form id="formParticipante" class="bg-white p-8 rounded-lg shadow-md max-w-xl mb-8">
+        <label for="identificacion" class="block mt-4 mb-1 text-[#2c3e50]">Identificación</label>
+        <input type="text" id="identificacion" name="identificacion" required class="w-full p-2 border border-gray-300 rounded"/>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+        <label for="nombres" class="block mt-4 mb-1 text-[#2c3e50]">Nombres</label>
+        <input type="text" id="nombres" name="nombres" required class="w-full p-2 border border-gray-300 rounded"/>
 
-        <label for="celular">Celular</label>
-        <input type="text" id="celular" name="celular" required>
+        <label for="apellidos" class="block mt-4 mb-1 text-[#2c3e50]">Apellidos</label>
+        <input type="text" id="apellidos" name="apellidos" required class="w-full p-2 border border-gray-300 rounded"/>
 
-        <button type="submit">Crear Participante</button>
+        <label for="email" class="block mt-4 mb-1 text-[#2c3e50]">Email</label>
+        <input type="email" id="email" name="email" required class="w-full p-2 border border-gray-300 rounded"/>
+
+        <label for="celular" class="block mt-4 mb-1 text-[#2c3e50]">Celular</label>
+        <input type="text" id="celular" name="celular" required class="w-full p-2 border border-gray-300 rounded"/>
+
+        <button type="submit" class="mt-6 px-4 py-3 bg-[#2c3e50] text-white rounded hover:bg-[#34495e]">Crear Participante</button>
       </form>
 
-      <div class="main-title" style="margin-top: 2rem;">Listado de Participantes</div>
-      <table id="tablaParticipantes" style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
-        <thead>
-          <tr style="background: #2c3e50; color: white;">
-            <th>Identificación</th>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Email</th>
-            <th>Celular</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+      <h3 class="text-xl text-[#34495e] mb-4">Lista de Participantes</h3>
+      <div class="overflow-x-auto rounded-lg border border-gray-300 bg-white shadow-md">
+        <table class="min-w-full bg-white rounded shadow overflow-hidden">
+          <thead class="bg-[#2c3e50] text-white text-left">
+            <tr>
+              <th class="py-2 px-4 border border-gray-300">Identificación</th>
+              <th class="py-2 px-4 border border-gray-300">Nombres</th>
+              <th class="py-2 px-4 border border-gray-300">Apellidos</th>
+              <th class="py-2 px-4 border border-gray-300">Email</th>
+              <th class="py-2 px-4 border border-gray-300">Celular</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm text-[#2c3e50]">
+            <tr class="border border-gray-300">
+              <td class="py-2 px-4 border border-gray-300">1012345678</td>
+              <td class="py-2 px-4 border border-gray-300">Camila</td>
+              <td class="py-2 px-4 border border-gray-300">López Ruiz</td>
+              <td class="py-2 px-4 border border-gray-300">camila.lopez@mail.com</td>
+              <td class="py-2 px-4 border border-gray-300">3001234567</td>
+            </tr>
+            <tr class="bg-[#ecf0f1] border bg-gray-100">
+              <td class="py-2 px-4 border border-gray-300">1098765432</td>
+              <td class="py-2 px-4 border border-gray-300">Juan</td>
+              <td class="py-2 px-4 border border-gray-300">Pérez Gómez</td>
+              <td class="py-2 px-4 border border-gray-300">juanperez@gmail.com</td>
+              <td class="py-2 px-4 border border-gray-300">3109876543</td>
+            </tr>
+            <tr class="border border-gray-300">
+              <td class="py-2 px-4 border border-gray-300">1045678910</td>
+              <td class="py-2 px-4 border border-gray-300">Laura</td>
+              <td class="py-2 px-4 border border-gray-300">Martínez Torres</td>
+              <td class="py-2 px-4 border border-gray-300">lauramartinez@yahoo.com</td>
+              <td class="py-2 px-4 border border-gray-300">3204567891</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
-    <aside>
+
+    <aside class="w-[250px] bg-[#ecf0f1] p-4 border-l border-gray-300">
       <nav>
-        <a href="Main.html">Crear proyecto</a>
-        <a href="Listado_Proyectos.html">Listado de proyectos</a>
-        <a href="Buscar_Proyecto.html">Buscar proyecto</a>
-        <a href="Participantes.html">Participantes</a>
-        <a href="Asignacion.html">Asignación de proyectos</a>
+        <a href="Main.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Crear proyecto</a>
+        <a href="Listado_Proyectos.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Listado de proyectos</a>
+        <a href="Buscar_Proyecto.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Buscar proyecto</a>
+        <a href="Participantes.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Participantes</a>
+        <a href="Asignacion.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Asignación de proyectos</a>
       </nav>
     </aside>
   </div>
 
-  <footer>
-    <p>&copy; 2025 Mateo Martinez</p> <br>
-    <p> Taller Tailwinds</p>
+  <footer class="bg-[#2c3e50] text-white p-4 text-center text-sm">
+    <p>&copy; 2025 Mateo Martinez</p>
+    <p>Taller Tailwinds</p>
   </footer>
 
   <script>
     document.getElementById("formParticipante").addEventListener("submit", function(event) {
       event.preventDefault();
-
-      const identificacion = document.getElementById("identificacion").value;
-      const nombres = document.getElementById("nombres").value;
-      const apellidos = document.getElementById("apellidos").value;
-      const email = document.getElementById("email").value;
-      const celular = document.getElementById("celular").value;
-
-      let participantes = JSON.parse(localStorage.getItem("participantes")) || [];
-
-      const existe = participantes.some(p => p.identificacion === identificacion);
-      if (existe) {
-        alert("Ya existe un participante con esa identificación. Por favor usa una diferente.");
-        return;
-      }
-
-      const participante = { identificacion, nombres, apellidos, email, celular };
-      participantes.push(participante);
-      localStorage.setItem("participantes", JSON.stringify(participantes));
-
-      agregarFilaParticipante(participante);
+      alert("Participante registrado :)");
       this.reset();
     });
-
-    function agregarFilaParticipante(participante) {
-      const tabla = document.getElementById("tablaParticipantes").querySelector("tbody");
-      const fila = document.createElement("tr");
-      fila.innerHTML = `
-        <td>${participante.identificacion}</td>
-        <td>${participante.nombres}</td>
-        <td>${participante.apellidos}</td>
-        <td>${participante.email}</td>
-        <td>${participante.celular}</td>
-      `;
-      tabla.appendChild(fila);
-    }
-
-    window.onload = function() {
-      let participantes = JSON.parse(localStorage.getItem("participantes")) || [];
-      participantes.forEach(agregarFilaParticipante);
-    };
   </script>
 </body>
 </html>

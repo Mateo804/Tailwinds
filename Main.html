@@ -1,119 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proyectos</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crear Proyecto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <h1>Crear Proyecto</h1>
+<body class="flex flex-col h-screen font-sans">
+
+  <header class="bg-[#2c3e50] text-white p-4 text-center">
+    <h1 class="text-xl font-bold">Crear Proyecto</h1>
   </header>
-  <div class="container">
-    <main>
-      <div class="breadcrumb">Inicio > Crear Proyecto</div>
-      <div class="main-title">Formulario de Creación de Proyecto</div>
-      <form id="formProyecto">
-        <label for="idProyecto">ID Proyecto</label>
-        <input type="text" id="idProyecto" name="idProyecto" required>
 
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre" required>
+  <div class="flex flex-1">
+    <main class="flex-1 p-8 bg-[#f4f4f4] overflow-auto">
+      <div class="text-sm text-[#7f8c8d] mb-4">Inicio &gt; Crear Proyecto</div>
+      <h2 class="text-2xl mb-4 text-[#34495e]">Formulario de Creación de Proyecto</h2>
 
-        <label for="descripcion">Descripción</label>
-        <textarea id="descripcion" name="descripcion" required></textarea>
+      <form id="formProyecto" class="bg-white p-8 rounded-lg shadow-md max-w-xl mb-10">
+        <label for="idProyecto" class="block mt-4 mb-1 text-[#2c3e50]">ID Proyecto</label>
+        <input type="text" id="idProyecto" name="idProyecto" required class="w-full p-2 border border-gray-300 rounded">
 
-        <label for="fechaInicio">Fecha Inicio</label>
-        <input type="date" id="fechaInicio" name="fechaInicio" required>
+        <label for="nombre" class="block mt-4 mb-1 text-[#2c3e50]">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required class="w-full p-2 border border-gray-300 rounded">
 
-        <label for="fechaFinal">Fecha Final</label>
-        <input type="date" id="fechaFinal" name="fechaFinal" required>
+        <label for="descripcion" class="block mt-4 mb-1 text-[#2c3e50]">Descripción</label>
+        <textarea id="descripcion" name="descripcion" required class="w-full p-2 border border-gray-300 rounded"></textarea>
 
-        <label for="valor">Valor</label>
-        <input type="number" id="valor" name="valor" required>
+        <label for="fechaInicio" class="block mt-4 mb-1 text-[#2c3e50]">Fecha Inicio</label>
+        <input type="date" id="fechaInicio" name="fechaInicio" required class="w-full p-2 border border-gray-300 rounded">
 
-        <button type="submit">Crear Proyecto</button>
+        <label for="fechaFinal" class="block mt-4 mb-1 text-[#2c3e50]">Fecha Final</label>
+        <input type="date" id="fechaFinal" name="fechaFinal" required class="w-full p-2 border border-gray-300 rounded">
+
+        <label for="valor" class="block mt-4 mb-1 text-[#2c3e50]">Valor</label>
+        <input type="number" id="valor" name="valor" required class="w-full p-2 border border-gray-300 rounded">
+
+        <button type="submit" class="mt-6 px-4 py-3 bg-[#2c3e50] text-white rounded hover:bg-[#34495e]">Crear Proyecto</button>
       </form>
 
-      <div class="main-title" style="margin-top: 2rem;">Listado de Proyectos</div>
-      <table id="tablaProyectos" style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
-        <thead>
-          <tr style="background: #2c3e50; color: white;">
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Fecha Inicio</th>
-            <th>Fecha Final</th>
-            <th>Valor</th>
+      <h2 class="text-xl mb-2 text-[#34495e]">Proyectos Existentes</h2>
+      <table class="min-w-full bg-white rounded shadow overflow-hidden">
+        <thead class="bg-[#2c3e50] text-white text-left">
+          <tr>
+            <th class="px-4 py-2">ID</th>
+            <th class="px-4 py-2">Nombre</th>
+            <th class="px-4 py-2">Descripción</th>
+            <th class="px-4 py-2">Fecha Inicio</th>
+            <th class="px-4 py-2">Fecha Final</th>
+            <th class="px-4 py-2">Valor</th>
           </tr>
         </thead>
         <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2">001</td>
+            <td class="px-4 py-2">Sistema de Inventario</td>
+            <td class="px-4 py-2">Control de productos y stock</td>
+            <td class="px-4 py-2">2025-01-15</td>
+            <td class="px-4 py-2">2025-03-30</td>
+            <td class="px-4 py-2">$3,500,000</td>
+          </tr>
+          <tr class="border-b bg-gray-100">
+            <td class="px-4 py-2">002</td>
+            <td class="px-4 py-2">Página Web Corporativa</td>
+            <td class="px-4 py-2">Sitio institucional para empresa</td>
+            <td class="px-4 py-2">2025-02-01</td>
+            <td class="px-4 py-2">2025-04-01</td>
+            <td class="px-4 py-2">$2,000,000</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2">003</td>
+            <td class="px-4 py-2">App Móvil de Eventos</td>
+            <td class="px-4 py-2">Gestión y reservas de eventos</td>
+            <td class="px-4 py-2">2025-03-10</td>
+            <td class="px-4 py-2">2025-06-10</td>
+            <td class="px-4 py-2">$4,200,000</td>
+          </tr>
         </tbody>
       </table>
     </main>
-    <aside>
+
+    <aside class="w-[250px] bg-[#ecf0f1] p-4 border-l border-gray-300">
       <nav>
-        <a href="Main.html">Crear proyecto</a>
-        <a href="Listado_Proyectos.html">Listado de proyectos</a>
-        <a href="Buscar_Proyecto.html">Buscar proyecto</a>
-        <a href="Participantes.html">Participantes</a>
-        <a href="Asignacion.html">Asignación de proyectos</a>
+        <a href="Main.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Crear proyecto</a>
+        <a href="Listado_Proyectos.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Listado de proyectos</a>
+        <a href="Buscar_Proyecto.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Buscar proyecto</a>
+        <a href="Participantes.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Participantes</a>
+        <a href="Asignacion.html" class="block p-3 mb-2 bg-[#bdc3c7] text-[#2c3e50] rounded hover:bg-[#95a5a6]">Asignación de proyectos</a>
       </nav>
     </aside>
   </div>
 
-  <footer>
-    <p>&copy; 2025 Mateo Martinez</p> <br>
-    <p> Taller Tailwinds</p>
+  <footer class="bg-[#2c3e50] text-white p-4 text-center text-sm">
+    <p>&copy; 2025 Taller Tailwinds</p>
   </footer>
 
- <script>
-  document.getElementById("formProyecto").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const idProyecto = document.getElementById("idProyecto").value;
-    const nombre = document.getElementById("nombre").value;
-    const descripcion = document.getElementById("descripcion").value;
-    const inicio = document.getElementById("fechaInicio").value;
-    const final = document.getElementById("fechaFinal").value;
-    const valor = document.getElementById("valor").value;
-
-    let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
-    const existe = proyectos.some(p => p.id === idProyecto);
-
-    if (existe) {
-      alert("Ya existe un proyecto con ese ID. Por favor usa uno diferente.");
-      return;
-    }
-
-    const proyecto = { id: idProyecto, nombre, descripcion, inicio, final, valor };
-    proyectos.push(proyecto);
-    localStorage.setItem("proyectos", JSON.stringify(proyectos));
-
-    agregarFilaProyecto(proyecto);
-    this.reset();
-  });
-
-  function agregarFilaProyecto(proyecto) {
-    const tabla = document.getElementById("tablaProyectos").querySelector("tbody");
-    const fila = document.createElement("tr");
-    fila.innerHTML = `
-      <td>${proyecto.id}</td>
-      <td>${proyecto.nombre}</td>
-      <td>${proyecto.descripcion}</td>
-      <td>${proyecto.inicio}</td>
-      <td>${proyecto.final}</td>
-      <td>${proyecto.valor}</td>
-    `;
-    tabla.appendChild(fila);
-  }
-
-  window.onload = function() {
-    const proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
-    proyectos.forEach(agregarFilaProyecto);
-  };
-</script>
+  <script>
+    document.getElementById("formProyecto").addEventListener("submit", function(event) {
+      event.preventDefault();
+      alert("Proyecto creado :)");
+      this.reset();
+    });
+  </script>
 
 </body>
 </html>
