@@ -19,15 +19,69 @@
 
       <h2 class="text-2xl mb-6 text-[#34495e] font-semibold">Listado de Proyectos</h2>
 
-      <ul id="listaProyectos" class="space-y-4">
-        <!-- Proyectos cargados aquí -->
-      </ul>
+      <div class="overflow-auto">
+        <table class="min-w-full bg-white rounded shadow">
+          <thead>
+            <tr class="bg-[#34495e] text-white text-left">
+              <th class="p-3">Nombre</th>
+              <th class="p-3">Descripción</th>
+              <th class="p-3">Fecha Inicio</th>
+              <th class="p-3">Fecha Final</th>
+              <th class="p-3">Valor</th>
+            </tr>
+          </thead>
+          <tbody class="text-[#2c3e50]">
+            <tr>
+              <td class="p-3">Sistema Escolar</td>
+              <td class="p-3">Módulo de gestión académica</td>
+              <td class="p-3">2025-01-10</td>
+              <td class="p-3">2025-03-20</td>
+              <td class="p-3">$3.500.000</td>
+            </tr>
+            <tr>
+              <td class="p-3">Tienda Virtual</td>
+              <td class="p-3">E-commerce para emprendedores</td>
+              <td class="p-3">2025-02-05</td>
+              <td class="p-3">2025-04-10</td>
+              <td class="p-3">$4.000.000</td>
+            </tr>
+            <tr>
+              <td class="p-3">App Fitness</td>
+              <td class="p-3">Seguimiento de ejercicios y dieta</td>
+              <td class="p-3">2025-03-01</td>
+              <td class="p-3">2025-05-15</td>
+              <td class="p-3">$3.800.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <h2 class="text-2xl mt-12 mb-6 text-[#34495e] font-semibold">Asignaciones de Proyectos</h2>
 
-      <ul id="listaAsignaciones" class="space-y-4">
-        <!-- Asignaciones cargadas aquí -->
-      </ul>
+      <div class="overflow-auto">
+        <table class="min-w-full bg-white rounded shadow">
+          <thead>
+            <tr class="bg-[#34495e] text-white text-left">
+              <th class="p-3">Nombre del Participante</th>
+              <th class="p-3">Proyecto Asignado</th>
+            </tr>
+          </thead>
+          <tbody class="text-[#2c3e50]">
+            <tr>
+              <td class="p-3">Ana Torres</td>
+              <td class="p-3">Sistema Escolar</td>
+            </tr>
+            <tr>
+              <td class="p-3">Luis Méndez</td>
+              <td class="p-3">Tienda Virtual</td>
+            </tr>
+            <tr>
+              <td class="p-3">Camila Rojas</td>
+              <td class="p-3">App Fitness</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
     </main>
 
@@ -43,64 +97,8 @@
   </div>
 
   <footer class="bg-[#2c3e50] text-white p-4 text-center text-sm">
-    <p>&copy; 2025 Mateo Martinez</p>
-    <p>Taller Tailwinds</p>
+    <p>&copy; 2025 Taller Tailwinds</p>
   </footer>
-
-  <script>
-    window.onload = function() {
-      cargarProyectos();
-      cargarAsignaciones();
-    };
-
-    function cargarProyectos() {
-      let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
-      const listaProyectos = document.getElementById("listaProyectos");
-
-      if (proyectos.length === 0) {
-        listaProyectos.innerHTML = '<li class="text-gray-500">No hay proyectos disponibles.</li>';
-        return;
-      }
-
-      proyectos.forEach(proyecto => {
-        const item = document.createElement("li");
-        item.className = "bg-white p-4 rounded shadow";
-
-        item.innerHTML = `
-          <p><span class="font-semibold text-[#2c3e50]">ID Proyecto:</span> ${proyecto.id}</p>
-          <p><span class="font-semibold text-[#2c3e50]">Nombre:</span> ${proyecto.nombre}</p>
-          <p><span class="font-semibold text-[#2c3e50]">Descripción:</span> ${proyecto.descripcion}</p>
-          <p><span class="font-semibold text-[#2c3e50]">Fecha Inicio:</span> ${proyecto.inicio}</p>
-          <p><span class="font-semibold text-[#2c3e50]">Fecha Final:</span> ${proyecto.final}</p>
-          <p><span class="font-semibold text-[#2c3e50]">Valor:</span> ${proyecto.valor}</p>
-        `;
-        listaProyectos.appendChild(item);
-      });
-    }
-
-    function cargarAsignaciones() {
-      let asignaciones = JSON.parse(localStorage.getItem("asignaciones")) || [];
-      const listaAsignaciones = document.getElementById("listaAsignaciones");
-
-      if (asignaciones.length === 0) {
-        listaAsignaciones.innerHTML = '<li class="text-gray-500">No hay asignaciones registradas.</li>';
-        return;
-      }
-
-      asignaciones.forEach(asignacion => {
-        const item = document.createElement("li");
-        item.className = "bg-white p-4 rounded shadow";
-
-        item.innerHTML = `
-          <p><span class="font-semibold text-[#2c3e50]">ID Participante:</span> ${asignacion.idParticipante}</p>
-          <p><span class="font-semibold text-[#2c3e50]">Nombre Participante:</span> ${asignacion.nombreParticipante}</p>
-          <p><span class="font-semibold text-[#2c3e50]">ID Proyecto:</span> ${asignacion.idProyecto}</p>
-          <p><span class="font-semibold text-[#2c3e50]">Nombre Proyecto:</span> ${asignacion.nombreProyecto}</p>
-        `;
-        listaAsignaciones.appendChild(item);
-      });
-    }
-  </script>
 
 </body>
 </html>
